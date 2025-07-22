@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimalist Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* A simple font to make it look decent */
+    body { font-family: sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  
+  <header class="bg-white shadow-md p-6">
+    <div class="container mx-auto">
+      <h1 class="text-3xl font-bold" data-editable="header-title">Your Name Here</h1>
+      <p class="text-gray-600" data-editable="header-subtitle">Professional Title / Slogan</p>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <section id="about">
+      <h2 class="text-2xl font-semibold mb-4" data-editable="about-heading">About Me</h2>
+      <p class="leading-relaxed" data-editable="about-paragraph">
+        This is a paragraph where you can introduce yourself. Talk about your passion, your skills, 
+        and what makes you unique. This template is a great starting point for a personal portfolio.
+      </p>
+    </section>
+
+    <section id="contact" class="mt-8">
+      <h2 class="text-2xl font-semibold mb-4" data-editable="contact-heading">Contact</h2>
+      <p class="leading-relaxed" data-editable="contact-email">your.email@example.com</p>
+    </section>
+  </main>
+
+  <script>
+    // This script listens for messages from the parent editor window
+    window.addEventListener('message', function(event) {
+      // Basic security check: only accept messages from our own app
+      // In a real app, you might want to make this more specific
+      if (event.origin !== window.location.origin) {
+        // console.log("Message rejected from origin:", event.origin);
+        // return;
+      }
+
+      const { key, value } = event.data;
+      const element = document.querySelector(`[data-editable="${key}"]`);
+      if (element) {
+        element.innerText = value;
+      }
+    });
+  </script>
+</body>
+</html>
